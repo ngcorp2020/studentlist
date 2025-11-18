@@ -1,0 +1,36 @@
+# version is now using "compose spec"
+# v2 and v3 are now combined!
+# docker-compose v1.27+ required
+      
+services:
+  website:
+    image: "php:apache"
+    container_name: "website"
+    depends_on:
+       - simpleapi
+    volumes:
+       - "./website:/var/www/html"
+    environment:
+      USERNAME: "toto"
+      PASSWORD: "python"
+    networks:
+      - sharednetwork
+    ports:
+      - "8080:8080"
+   
+
+  simpleapi:
+    image: "simpleapi:v1.0"
+    container_name: "simpleapi"
+    volumes:
+      - "./simple_api:/app"
+    networks:
+      - sharednetwork
+   
+
+networks:
+  sharednetwork:
+    name: sharednetwork
+    driver: bridge
+   
+
