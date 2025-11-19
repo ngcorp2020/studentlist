@@ -4,6 +4,8 @@
       
 services:
   website:
+    build:
+      context: ./website
     image: "php:apache"
     container_name: "website"
     depends_on:
@@ -20,6 +22,8 @@ services:
    
 
   simpleapi:
+    build:
+      context: ./simple_api
     image: "simpleapi:v1.0"
     container_name: "simpleapi"
     volumes:
